@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Astryx — Decentralized Generation</title>
+<meta name="description" content="Astryx (ASX) is a Solana DAO governance token. Holders vote on the direction and roadmap of the project itself."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #1C1C1A;
+    --bg2:     #222220;
+    --bg3:     #282826;
+    --cream:   #F2EDE4;
+    --cream2:  #C9C4BB;
+    --muted:   #7A7570;
+    --border:  #2E2E2C;
+    --elec:    #00E5FF;
+    --elec2:   #00B8CC;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 56px;
+    border-bottom: 0.5px solid var(--border);
+    background: rgba(28,28,26,0.94);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .nav-wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--cream);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  .nav-cta {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--elec);
+    border: 0.5px solid var(--elec);
+    padding: 9px 22px;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-cta:hover {
+    background: var(--elec);
+    color: var(--bg);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 160px 10vw 80px;
+    border-bottom: 0.5px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-mark {
+    position: absolute;
+    right: 6vw;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: var(--elec);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 10vw, 128px);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    line-height: 1.0;
+    margin-bottom: 10px;
+    color: var(--cream);
+  }
+
+  .hero-ticker {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--cream2);
+    max-width: 480px;
+    line-height: 1.9;
+    margin-bottom: 52px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--bg);
+    background: var(--elec);
+    padding: 14px 34px;
+    transition: opacity 0.2s;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-ghost {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--cream2);
+    border: 0.5px solid var(--border);
+    padding: 14px 34px;
+    transition: color 0.2s, border-color 0.2s;
+    font-weight: 400;
+  }
+
+  .btn-ghost:hover { color: var(--cream); border-color: var(--muted); }
+
+  .hero-ca {
+    margin-top: 60px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border-top: 0.5px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .ca-val {
+    color: var(--elec);
+    font-size: 10px;
+    word-break: break-all;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .ca-val:hover { opacity: 0.7; }
+
+  .copied-msg {
+    font-size: 10px;
+    color: var(--elec);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  /* SECTIONS */
+  .section-wrap {
+    padding: 112px 10vw;
+    border-bottom: 0.5px solid var(--border);
+    max-width: 100%;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: var(--elec);
+    margin-bottom: 52px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-weight: 400;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    margin-bottom: 28px;
+    color: var(--cream);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-body {
+    font-size: 14px;
+    color: var(--cream2);
+    line-height: 1.95;
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+
+  .about-points { list-style: none; margin-top: 36px; }
+
+  .about-points li {
+    font-size: 13px;
+    color: var(--cream);
+    padding: 15px 0;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    font-weight: 300;
+  }
+
+  .about-points li::before {
+    content: '+';
+    color: var(--elec);
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+
+  /* TOKENOMICS */
+  .tok-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .tok-card {
+    background: var(--bg2);
+    padding: 36px 30px;
+    border-top: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .tok-card:hover { border-top-color: var(--elec); }
+
+  .tok-pct {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+    color: var(--cream);
+  }
+
+  .tok-name {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .tok-amount {
+    font-size: 12px;
+    color: var(--elec);
+    font-weight: 400;
+  }
+
+  .tok-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+    border-top: 0.5px solid var(--border);
+    padding-top: 32px;
+    font-weight: 300;
+  }
+
+  /* ROADMAP VISUAL */
+  .roadmap-visual {
+    margin-top: 56px;
+    position: relative;
+  }
+
+  .roadmap-track {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+  }
+
+  .roadmap-track::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    right: 28px;
+    height: 0.5px;
+    background: var(--border);
+    z-index: 0;
+  }
+
+  .roadmap-node {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .node-dot {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 0.5px solid var(--border);
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-weight: 400;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .node-dot.active {
+    border-color: var(--elec);
+    color: var(--elec);
+    background: rgba(0,229,255,0.06);
+  }
+
+  .node-content {
+    text-align: center;
+    padding: 0 8px;
+  }
+
+  .node-phase {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+
+  .node-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  .node-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .node-status {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    padding: 3px 10px;
+    margin-top: 10px;
+    font-weight: 400;
+  }
+
+  .status-live { border: 0.5px solid var(--elec); color: var(--elec); }
+  .status-next { border: 0.5px solid var(--border); color: var(--muted); }
+
+  /* GOVERNANCE */
+  .gov-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .gov-card {
+    background: var(--bg2);
+    padding: 38px 34px;
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .gov-card:hover { border-left-color: var(--elec); }
+
+  .gov-num {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--elec);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .gov-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+    color: var(--cream);
+  }
+
+  .gov-body {
+    font-size: 13px;
+    color: var(--cream2);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  /* LINKS */
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .link-card {
+    background: var(--bg2);
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .link-card:hover { border-bottom-color: var(--elec); }
+
+  .link-card-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .link-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+  }
+
+  .link-arrow {
+    font-size: 16px;
+    color: var(--elec);
+    margin-top: auto;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 48px 10vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .footer-ca {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--border);
+    margin-top: 6px;
+  }
+
+  .footer-right {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-align: right;
+    font-weight: 300;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 140px 24px 60px; }
+    .section-wrap { padding: 80px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tok-grid { grid-template-columns: 1fr; }
+    .gov-grid { grid-template-columns: 1fr; }
+    .links-grid { grid-template-columns: 1fr 1fr; }
+    .roadmap-track { flex-direction: column; gap: 40px; }
+    .roadmap-track::before { display: none; }
+    .roadmap-node { align-items: flex-start; flex-direction: row; gap: 20px; }
+    .node-content { text-align: left; }
+    footer { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <svg width="22" height="26" viewBox="0 0 100 116">
+      <polygon points="50,4 96,88 4,88" fill="none" stroke="#F2EDE4" stroke-width="4" stroke-linejoin="miter"/>
+      <polygon points="50,28 76,74 24,74" fill="none" stroke="#F2EDE4" stroke-width="2.5" stroke-linejoin="miter"/>
+      <polygon points="50,52 63,68 37,68" fill="none" stroke="#F2EDE4" stroke-width="1.2" stroke-linejoin="miter"/>
+      <circle cx="50" cy="60" r="3.5" fill="#00E5FF"/>
+    </svg>
+    <span class="nav-wordmark">ASTRYX</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#tokenomics">Tokenomics</a></li>
+    <li><a href="#governance">Governance</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#links">Links</a></li>
+  </ul>
+  <a class="nav-cta" href="https://pump.fun/coin/FoaXybktT4Qyuwejt9qug3Zate5GPn6izWYG8SUBpump" target="_blank">Buy ASX</a>
+</nav>
+
+<div class="hero">
+  <svg class="hero-bg-mark" width="500" height="580" viewBox="0 0 100 116">
+    <polygon points="50,4 96,88 4,88" fill="none" stroke="#F2EDE4" stroke-width="0.5" stroke-linejoin="miter"/>
+    <polygon points="50,28 76,74 24,74" fill="none" stroke="#F2EDE4" stroke-width="0.3" stroke-linejoin="miter"/>
+    <polygon points="50,52 63,68 37,68" fill="none" stroke="#F2EDE4" stroke-width="0.15" stroke-linejoin="miter"/>
+  </svg>
+  <p class="hero-eyebrow">SOLANA / DAO GOVERNANCE TOKEN</p>
+  <h1 class="hero-title">ASTRYX</h1>
+  <p class="hero-ticker">ASX</p>
+  <p class="hero-sub">A decentralized generation. Holders vote on the direction and roadmap of the project itself. No backroom decisions. The community steers.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://pump.fun/coin/FoaXybktT4Qyuwejt9qug3Zate5GPn6izWYG8SUBpump" target="_blank">Buy on pump.fun</a>
+    <a class="btn-ghost" href="Astryx_ASX_Whitepaper_v0.1.pdf" target="_blank">Read Whitepaper</a>
+    <a class="btn-ghost" href="https://x.com/ASTRYXasx" target="_blank">Follow on X</a>
+  </div>
+  <div class="hero-ca">
+    <span style="color:var(--muted)">CA</span>
+    <span class="ca-val" onclick="copyCA()" title="Click to copy">FoaXybktT4Qyuwejt9qug3Zate5GPn6izWYG8SUBpump</span>
+    <span class="copied-msg" id="copied">Copied</span>
+  </div>
+</div>
+
+<div class="section-wrap" id="about">
+  <p class="section-label">01 / ABOUT</p>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title">Built for the people holding it</h2>
+      <p class="about-body">Most crypto projects claim community-first, then make every real decision internally. Holders are passive. The team wins by default.</p>
+      <p class="about-body">Astryx is built differently. Governance is not a feature added after launch. It is the foundation. ASX holders propose and vote on the project direction from day one.</p>
+    </div>
+    <div>
+      <ul class="about-points">
+        <li>Solana SPL token — fast, low-cost, verifiable on-chain</li>
+        <li>DAO governance building toward Realms on Solana</li>
+        <li>1 billion total supply — fixed, no additional minting</li>
+        <li>Bonding curve live on pump.fun — graduating to Raydium</li>
+        <li>Whitepaper published at launch — no hidden agenda</li>
+        <li>Founder wallet public and on-chain for full transparency</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap" id="tokenomics">
+  <p class="section-label">02 / TOKENOMICS</p>
+  <h2 class="section-title">1,000,000,000 ASX<br/>Fixed supply</h2>
+  <div class="tok-grid">
+    <div class="tok-card">
+      <div class="tok-pct">70%</div>
+      <div class="tok-name">BONDING CURVE</div>
+      <div class="tok-amount">700,000,000 ASX</div>
+    </div>
+    <div class="tok-card">
+      <div class="tok-pct">15%</div>
+      <div class="tok-name">DAO TREASURY</div>
+      <div class="tok-amount">150,000,000 ASX</div>
+    </div>
+    <div class="tok-card">
+      <div class="tok-pct">15%</div>
+      <div class="tok-name">FOUNDER</div>
+      <div class="tok-amount">150,000,000 ASX</div>
+    </div>
+  </div>
+  <p class="tok-note">No vesting cliffs. No hidden unlock schedules. All allocations visible on-chain. The founder wallet is published publicly. The DAO treasury is controlled entirely by holder votes.</p>
+</div>
+
+<div class="section-wrap" id="governance">
+  <p class="section-label">03 / GOVERNANCE</p>
+  <h2 class="section-title">Holders decide.<br/>Not founders.</h2>
+  <div class="gov-grid">
+    <div class="gov-card">
+      <div class="gov-num">PHASE 01</div>
+      <div class="gov-title">Off-chain voting</div>
+      <p class="gov-body">Before Raydium graduation, governance operates through Snapshot. ASX holders connect wallets. Voting weight is proportional to holdings. All proposals and results published publicly.</p>
+    </div>
+    <div class="gov-card">
+      <div class="gov-num">PHASE 02</div>
+      <div class="gov-title">On-chain governance</div>
+      <p class="gov-body">After graduating to Raydium, Astryx deploys through Realms — Solana's native on-chain governance protocol. Proposals, votes, and outcomes recorded permanently on-chain. Trustless by design.</p>
+    </div>
+    <div class="gov-card">
+      <div class="gov-num">WHAT HOLDERS VOTE ON</div>
+      <div class="gov-title">Real decisions</div>
+      <p class="gov-body">Project roadmap and development priorities. Use of the community treasury. Any significant structural changes to Astryx. The first DAO vote after graduation decides the roadmap itself.</p>
+    </div>
+    <div class="gov-card">
+      <div class="gov-num">PROPOSAL PROCESS</div>
+      <div class="gov-title">Open to all holders</div>
+      <p class="gov-body">Any holder can submit a proposal. A minimum discussion period precedes voting. Simple majority to pass. Passed proposals are binding and executed publicly. No founder veto.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap" id="roadmap">
+  <p class="section-label">04 / ROADMAP</p>
+  <h2 class="section-title">Milestones,<br/>not dates</h2>
+  <div class="roadmap-visual">
+    <div class="roadmap-track">
+      <div class="roadmap-node">
+        <div class="node-dot active">01</div>
+        <div class="node-content">
+          <div class="node-phase">LAUNCH</div>
+          <div class="node-title">Bonding curve live</div>
+          <div class="node-body">Token deployed. Whitepaper published. Contract verifiable on Solscan.</div>
+          <span class="node-status status-live">LIVE NOW</span>
+        </div>
+      </div>
+      <div class="roadmap-node">
+        <div class="node-dot">02</div>
+        <div class="node-content">
+          <div class="node-phase">GRADUATION</div>
+          <div class="node-title">Raydium listing</div>
+          <div class="node-body">Curve completes. Liquidity migrates to Raydium. First real trading pair.</div>
+          <span class="node-status status-next">NEXT</span>
+        </div>
+      </div>
+      <div class="roadmap-node">
+        <div class="node-dot">03</div>
+        <div class="node-content">
+          <div class="node-phase">GOVERNANCE</div>
+          <div class="node-title">DAO activation</div>
+          <div class="node-body">Snapshot deployed. First community proposal. Treasury wallet published.</div>
+          <span class="node-status status-next">UPCOMING</span>
+        </div>
+      </div>
+      <div class="roadmap-node">
+        <div class="node-dot">04</div>
+        <div class="node-content">
+          <div class="node-phase">ON-CHAIN</div>
+          <div class="node-title">Realms deployment</div>
+          <div class="node-body">Full on-chain governance via Realms. First binding vote executed.</div>
+          <span class="node-status status-next">UPCOMING</span>
+        </div>
+      </div>
+      <div class="roadmap-node">
+        <div class="node-dot">05</div>
+        <div class="node-content">
+          <div class="node-phase">EXPANSION</div>
+          <div class="node-title">Exchange listings</div>
+          <div class="node-body">MEXC, Gate.io applications. Community votes on exchange priorities.</div>
+          <span class="node-status status-next">FUTURE</span>
+        </div>
+      </div>
+      <div class="roadmap-node">
+        <div class="node-dot">06</div>
+        <div class="node-content">
+          <div class="node-phase">BEYOND</div>
+          <div class="node-title">DAO decides</div>
+          <div class="node-body">Everything from here is determined by holder vote. The roadmap belongs to the community.</div>
+          <span class="node-status status-next">DAO VOTE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap" id="links">
+  <p class="section-label">05 / LINKS</p>
+  <h2 class="section-title">Get involved</h2>
+  <div class="links-grid">
+    <a class="link-card" href="https://pump.fun/coin/FoaXybktT4Qyuwejt9qug3Zate5GPn6izWYG8SUBpump" target="_blank">
+      <span class="link-card-label">BUY</span>
+      <span class="link-card-name">pump.fun</span>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-card" href="https://x.com/ASTRYXasx" target="_blank">
+      <span class="link-card-label">FOLLOW</span>
+      <span class="link-card-name">X / Twitter</span>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-card" href="Astryx_ASX_Whitepaper_v0.1.pdf" target="_blank">
+      <span class="link-card-label">READ</span>
+      <span class="link-card-name">Whitepaper</span>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-card" href="https://solscan.io/token/FoaXybktT4Qyuwejt9qug3Zate5GPn6izWYG8SUBpump" target="_blank">
+      <span class="link-card-label">VERIFY</span>
+      <span class="link-card-name">Solscan</span>
+      <span class="link-arrow">↗</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    ASTRYX (ASX) — DECENTRALIZED GENERATION
+    <div class="footer-ca">CA: FoaXybktT4Qyuwejt9qug3Zate5GPn6izWYG8SUBpump</div>
+  </div>
+  <div class="footer-right">
+    Not financial advice.<br/>Do your own research.
+  </div>
+</footer>
+
+<script>
+  function copyCA() {
+    navigator.clipboard.writeText('FoaXybktT4Qyuwejt9qug3Zate5GPn6izWYG8SUBpump');
+    const msg = document.getElementById('copied');
+    msg.style.opacity = '1';
+    setTimeout(() => { msg.style.opacity = '0'; }, 1800);
+  }
+</script>
+</body>
+</html>

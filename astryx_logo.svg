@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" width="400" height="460">
+
+  <rect width="400" height="460" fill="#0A0A0F"/>
+
+  <g transform="translate(100, 20)">
+    <polygon points="100,8 192,176 8,176" fill="none" stroke="#F0EEF8" stroke-width="2.5" stroke-linejoin="miter"/>
+    <polygon points="100,44 158,148 42,148" fill="none" stroke="#F0EEF8" stroke-width="1.5" stroke-linejoin="miter"/>
+    <polygon points="100,80 124,124 76,124" fill="none" stroke="#F0EEF8" stroke-width="0.75" stroke-linejoin="miter"/>
+    <line x1="100" y1="8" x2="100" y2="0" stroke="#F0EEF8" stroke-width="1.2"/>
+    <line x1="100" y1="80" x2="100" y2="44" stroke="#F0EEF8" stroke-width="0.75" stroke-dasharray="3,4"/>
+    <circle cx="100" cy="102" r="3" fill="#F0EEF8"/>
+    <line x1="8" y1="176" x2="8" y2="192" stroke="#F0EEF8" stroke-width="1.2"/>
+    <line x1="192" y1="176" x2="192" y2="192" stroke="#F0EEF8" stroke-width="1.2"/>
+    <line x1="8" y1="192" x2="192" y2="192" stroke="#F0EEF8" stroke-width="1.2"/>
+    <line x1="72" y1="192" x2="128" y2="192" stroke="#F0EEF8" stroke-width="3"/>
+    <text x="100" y="226" fill="#F0EEF8" font-family="Georgia, serif" font-size="18" letter-spacing="10" text-anchor="middle">ASX</text>
+  </g>
+
+  <text x="200" y="340" fill="#F0EEF8" font-family="Georgia, serif" font-size="40" font-weight="400" letter-spacing="14" text-anchor="middle">ASTRYX</text>
+
+  <text x="200" y="370" fill="#555555" font-family="Georgia, serif" font-size="11" letter-spacing="3" text-anchor="middle">DECENTRALIZED GENERATION</text>
+
+</svg>
